@@ -5,6 +5,7 @@
 package ucan.api.services;
 
 import java.util.List;
+import ucan.api.controllers.dto.UserDTO;
 import ucan.api.domain.User;
 
 /**
@@ -15,4 +16,5 @@ public interface UserService
 {
      User findById(Integer id);
      List<User> findAll();
+     User createUser(UserDTO user);
 }
