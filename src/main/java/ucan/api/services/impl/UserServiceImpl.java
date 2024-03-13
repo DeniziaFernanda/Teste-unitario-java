@@ -6,8 +6,10 @@ package ucan.api.services.impl;
 
 import java.util.List;
 import java.util.Optional;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ucan.api.controllers.dto.UserDTO;
 import ucan.api.domain.User;
 import ucan.api.repositories.UserRepository;
 import ucan.api.services.UserService;
@@ -20,6 +22,8 @@ import ucan.api.services.exceptions.ObjectNotFoundException;
 @Service
 public class UserServiceImpl implements UserService
 {
+    @Autowired
+    private ModelMapper mapper;
 
     @Autowired
     private UserRepository userRepository;
@@ -35,5 +39,11 @@ public class UserServiceImpl implements UserService
     public List<User> findAll()
     {
         return userRepository.findAll();
+    }
+
+    @Override
+    public User createUser(UserDTO user)
+    {
+        return userRepository.save(mapper.map(user, User.class));
     }
 }
