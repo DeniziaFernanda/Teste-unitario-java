@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import ucan.api.domain.User;
 import ucan.api.repositories.UserRepository;
 import ucan.api.services.UserService;
+import ucan.api.services.exceptions.ObjectNotFoundException;
 
 /**
  *
@@ -26,7 +27,7 @@ public class UserServiceImpl implements UserService
     public User findById(Integer id)
     {
         Optional<User> user = userRepository.findById(id);
-        return user.orElse(null);
+        return user.orElseThrow(() -> new ObjectNotFoundException("User não encontrado"));
     }
    
 }
