@@ -4,6 +4,7 @@
  */
 package ucan.api.services;
 
+import java.util.List;
 import ucan.api.domain.User;
 
 /**
@@ -13,4 +14,5 @@ import ucan.api.domain.User;
 public interface UserService
 {
      User findById(Integer id);
+     List<User> findAll();
 }
